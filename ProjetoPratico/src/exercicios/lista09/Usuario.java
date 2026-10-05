@@ -13,14 +13,12 @@ public class Usuario {
     private Plano plano;
 
     public Usuario(String nome, String email) {
-        // Fase 02: valida primeiro, atribui depois.
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome inválido. O nome não pode ser vazio.");
         }
         if (email == null || email.trim().isEmpty()) {
             throw new IllegalArgumentException("E-mail inválido. O e-mail não pode ser vazio.");
         }
-        // Nao valida e-mail de verdade: basta conter um @ no meio.
         if (!email.contains("@")) {
             throw new IllegalArgumentException("E-mail inválido: " + email + ". O e-mail deve conter @.");
         }
@@ -29,6 +27,7 @@ public class Usuario {
         this.email = email;
         this.id = contador;
         this.seguindo = new ArrayList<>();
+        this.plano = new PlanoGratuito();
         contador++;
     }
 
@@ -44,13 +43,24 @@ public class Usuario {
         return email;
     }
 
+    public Plano getPlano() {
+        return plano;
+    }
+
+    public void assinar(Plano novoPlano) {
+        if (novoPlano == null) {
+            throw new IllegalArgumentException("Plano não pode ser nulo.");
+        }
+        this.plano = novoPlano;
+    }
+
     public void seguir(Usuario outro) {
         if (this.equals(outro)) {
             throw new IllegalArgumentException("Não pode seguir você mesmo.");
         }
         for (Usuario usuario : seguindo) {
             if (usuario.equals(outro)) {
-                throw new IllegalArgumentException("Você já segue esse usuário");
+                throw new IllegalArgumentException("Você já segue esse usuário.");
             }
         }
         seguindo.add(outro);
@@ -62,13 +72,6 @@ public class Usuario {
 
     public int getQuantidadeSeguindo() {
         return seguindo.size();
-    }
-
-    public void assinar(Plano novoPlano) {
-        if (novoPlano == null) {
-            throw new IllegalArgumentException("Plano não pode ser vazio");
-        }
-        this.plano = novoPlano;
     }
 
 }

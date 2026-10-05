@@ -2,31 +2,21 @@ package exercicios.lista08;
 
 public class Conteudo {
 
-    protected static int contador = 1;
+    private static int contador = 0;
 
     private int id;
     private String titulo;
     private int duracaoEmSegundos;
 
     public Conteudo(String titulo, int duracaoEmSegundos) {
-        if (titulo == null || titulo.trim().isEmpty()) {
-            throw new IllegalArgumentException("Título inválido. O título não pode ser vazio.");
-        }
-
-        if (duracaoEmSegundos <= 0) {
-            throw new IllegalArgumentException(
-                    "Duração inválida: " + duracaoEmSegundos + ". A duração deve ser maior que zero.");
-        }
-
-        this.titulo = titulo;
-        this.duracaoEmSegundos = duracaoEmSegundos;
+        setTitulo(titulo);
+        setDuracaoEmSegundos(duracaoEmSegundos);
         // So consome um id depois de validar: se o construtor lanca, nenhum id e gasto.
-        this.id = contador;
-        contador++;
+        this.id = ++contador;
     }
 
     public void reproduzir() {
-        System.out.println(titulo + " está sendo reproduzido");
+        System.out.println("Reproduzindo: " + toString());
     }
 
     protected void setId(int id) {
@@ -41,8 +31,23 @@ public class Conteudo {
         return titulo;
     }
 
+    public void setTitulo(String titulo) {
+        if (titulo == null || titulo.trim().isEmpty()) {
+            throw new IllegalArgumentException("Título inválido. O título não pode ser vazio.");
+        }
+        this.titulo = titulo;
+    }
+
     public int getDuracaoEmSegundos() {
         return duracaoEmSegundos;
+    }
+
+    public void setDuracaoEmSegundos(int duracaoEmSegundos) {
+        if (duracaoEmSegundos <= 0) {
+            throw new IllegalArgumentException(
+                    "Duração inválida: " + duracaoEmSegundos + ". A duração deve ser maior que zero.");
+        }
+        this.duracaoEmSegundos = duracaoEmSegundos;
     }
 
     public String getDuracaoFormatada() {
@@ -53,8 +58,7 @@ public class Conteudo {
 
     @Override
     public String toString() {
-        // id, título e duração
-        return "Id: " + id + " título: " + titulo + " duração: " + getDuracaoFormatada();
+        return "[" + id + "] " + titulo + " (" + getDuracaoFormatada() + ")";
     }
 
 }
