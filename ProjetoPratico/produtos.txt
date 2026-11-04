@@ -1,0 +1,3 @@
+10;Mouse sem fio;89.9
+20;Teclado mecânico;349.0
+30;Monitor 24 polegadas;899.5
