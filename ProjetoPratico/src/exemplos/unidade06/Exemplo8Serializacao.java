@@ -5,7 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-public class ExemploTresSerializacao {
+
+public class Exemplo8Serializacao {
 
     public static void main(String[] args) {
         File f = new File("Objetos.bin");
@@ -15,9 +16,8 @@ public class ExemploTresSerializacao {
             o.writeObject(new ContaBancaria("1", "Lucas", 300));
             o.writeObject(new Veiculo("MIE-3932", "Anderson"));
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Erro: " + e.getMessage());
         }
 
     }
-
 }

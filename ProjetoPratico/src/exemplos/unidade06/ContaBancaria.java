@@ -1,6 +1,10 @@
 package exemplos.unidade06;
 
-public class ContaBancaria {
+import java.io.Serializable;
+
+public class ContaBancaria implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String codigo;
     private String nome;
@@ -24,5 +28,10 @@ public class ContaBancaria {
         return saldo;
     }
 
+
+    @Override
+    public String toString() {
+        return codigo + " - " + nome + " - " + saldo;
+    }
 
 }

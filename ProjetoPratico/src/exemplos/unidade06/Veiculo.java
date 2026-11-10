@@ -1,6 +1,10 @@
 package exemplos.unidade06;
 
-public class Veiculo {
+import java.io.Serializable;
+
+public class Veiculo implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     private String placa;
     private String proprietario;
@@ -18,4 +22,8 @@ public class Veiculo {
         return proprietario;
     }
 
+     @Override
+    public String toString() {
+        return placa + " - " + proprietario;
+    }
 }

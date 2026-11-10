@@ -4,12 +4,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class ExemploUmLeituraBinario {
+public class Exemplo3LeituraBinario {
 
     public static void main(String[] args) {
+        File f = null;
+        FileInputStream fis = null;
         try {
-            File f = new File("dados.dat");
-            FileInputStream fis = new FileInputStream(f);
+            f = new File("dados.dat");
+            fis = new FileInputStream(f);
             int dado;
 
             while (true) {
@@ -21,12 +23,10 @@ public class ExemploUmLeituraBinario {
                 }
             }
             fis.close();
+            System.out.println("Terminou");
         } catch (IOException e) {
-            System.out.println("Aconteceu um erro: " + e.getMessage());
-        }
-
-        System.out.println("Terminou");
+            System.out.println("Deu erro: " + e.getMessage());
+        } 
 
     }
-
 }
